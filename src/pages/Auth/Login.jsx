@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ArrowRight,
   Eye,
@@ -8,10 +8,33 @@ import {
   Mail,
   ShieldCheck,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Login() {
-  const [showPassword, setShowPassword] = useState(false);
+      const navigate = useNavigate();
+const [showPassword, setShowPassword] = useState(false);
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("civicconnect_logged_in");
+
+    if (isLoggedIn === "true") {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      alert("Please enter your email and password.");
+      return;
+    }
+
+    localStorage.setItem("civicconnect_logged_in", "true");
+    localStorage.setItem("civicconnect_user_email", email);
+
+    navigate("/dashboard");
+  };
 
   return (
     <div className="auth-page">
@@ -94,18 +117,20 @@ function Login() {
               </p>
             </div>
 
-            <form className="auth-form">
+            <form className="auth-form" onSubmit={handleLogin}>
               <div className="form-group">
                 <label htmlFor="email">Email address</label>
 
                 <div className="input-wrapper">
                   <Mail size={19} />
 
-                  <input
-                    id="email"
-                    type="email"
-                    placeholder="you@example.com"
-                  />
+                 <input
+  id="email"
+  type="email"
+  placeholder="you@example.com"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+/>
                 </div>
               </div>
 
@@ -122,10 +147,12 @@ function Login() {
                   <LockKeyhole size={19} />
 
                   <input
-                    id="password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
-                  />
+  id="password"
+  type={showPassword ? "text" : "password"}
+  placeholder="Enter your password"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+/>
 
                   <button
                     type="button"

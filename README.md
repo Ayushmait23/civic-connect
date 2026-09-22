@@ -1,16 +1,149 @@
-# React + Vite
+# CivicConnect
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Crowdsourced Civic Issue Reporting and Resolution System
 
-Currently, two official plugins are available:
+CivicConnect is a modern civic-tech platform that enables citizens to report local civic problems and provides administrators with a centralized system to monitor, prioritize, manage, and resolve those issues.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The platform is designed to improve transparency, citizen participation, issue tracking, and coordination between citizens and civic authorities.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Features
 
-## Expanding the ESLint configuration
+### 👤 Citizen Module
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Citizen dashboard
+- Report civic issues
+- Select issue category and priority
+- Add issue description
+- Upload issue images
+- Select issue location using an interactive map
+- Track reported issues
+- View issue status and history
+- View city-wide civic issues
+- Notifications
+- User settings
+
+### 🛠️ Admin Module
+
+- Admin dashboard
+- Monitor reported civic issues
+- Search and filter issues
+- Manage issue priorities and statuses
+- City-wide issue map
+- Interactive issue markers
+- Analytics dashboard
+- Citizen management
+- Notifications management
+- Admin settings
+
+### 🤖 AI-Ready Features
+
+The frontend is designed to support advanced AI functionality including:
+
+- Smart issue categorization
+- Duplicate issue detection
+- Image-based issue analysis
+- Smart priority recommendation
+- Civic issue insights
+- AI-assisted hotspot identification
+
+These features are structured so that AI/ML services can be connected through backend APIs.
+
+---
+
+## 🗺️ Core Civic Issue Categories
+
+CivicConnect can be used for reporting issues such as:
+
+- Road damage and potholes
+- Streetlight failures
+- Garbage and sanitation problems
+- Water leakage
+- Drainage problems
+- Infrastructure damage
+- Other public civic issues
+
+---
+
+## 🧑‍💻 Technology Stack
+
+### Frontend
+
+- React.js
+- Vite
+- JavaScript
+- HTML5
+- CSS3
+
+### UI & Animation
+
+- Framer Motion
+- Lucide React
+- Responsive CSS
+
+### Data Visualization
+
+- Recharts
+
+### Maps
+
+- Leaflet
+- React Leaflet
+- OpenStreetMap
+
+### Backend Integration
+
+The frontend is structured to integrate with:
+
+- Node.js
+- Express.js
+- REST APIs
+- PostgreSQL / MongoDB
+- Authentication services
+- Cloud storage
+- AI/ML services
+
+---
+
+## 📁 Project Structure
+
+```text
+civic-connect/
+│
+├── public/
+│
+├── src/
+│   ├── assets/
+│   │
+│   ├── components/
+│   │   ├── common/
+│   │   ├── map/
+│   │   └── ...
+│   │
+│   ├── context/
+│   ├── data/
+│   ├── hooks/
+│   │
+│   ├── layouts/
+│   │   ├── CitizenLayout.jsx
+│   │   └── AdminLayout.jsx
+│   │
+│   ├── pages/
+│   │   ├── Admin/
+│   │   ├── Auth/
+│   │   ├── Citizen/
+│   │   └── Landing/
+│   │
+│   ├── services/
+│   ├── utils/
+│   │
+│   ├── App.jsx
+│   ├── App.css
+│   └── index.css
+│
+├── .gitignore
+├── package.json
+├── package-lock.json
+├── vite.config.js
+└── README.md

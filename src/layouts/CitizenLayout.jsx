@@ -10,9 +10,16 @@ import {
   ShieldCheck,
   User,
 } from "lucide-react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
 function CitizenLayout() {
+      const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("civicconnect_logged_in");
+    localStorage.removeItem("civicconnect_user_email");
+    navigate("/login");
+  };
   const navigation = [
     {
       label: "Dashboard",
@@ -101,11 +108,12 @@ function CitizenLayout() {
             </div>
 
             <button
-              className="sidebar-logout"
-              aria-label="Logout"
-            >
-              <LogOut size={16} />
-            </button>
+  className="sidebar-logout"
+  aria-label="Logout"
+  onClick={handleLogout}
+>
+  <LogOut size={16} />
+</button>
           </div>
         </div>
       </aside>

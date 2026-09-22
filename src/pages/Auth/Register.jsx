@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { motion } from "framer-motion";
 import {
@@ -15,7 +15,32 @@ import {
 import { useState } from "react";
 
 function Register() {
-  const [showPassword, setShowPassword] = useState(false);
+      const navigate = useNavigate();
+      const [showPassword, setShowPassword] = useState(false);
+      const [name, setName] = useState("");
+      const [email, setEmail] = useState("");
+      const [password, setPassword] = useState("");
+      const [agreed, setAgreed] = useState(false);
+
+        const handleRegister = (e) => {
+    e.preventDefault();
+
+    if (!name || !email || !password) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    if (!agreed) {
+      alert("Please agree to the terms and privacy policy.");
+      return;
+    }
+
+    localStorage.setItem("civicconnect_logged_in", "true");
+    localStorage.setItem("civicconnect_user_email", email);
+    localStorage.setItem("civicconnect_user_name", name);
+
+    navigate("/dashboard");
+  };
 
   return (
     <div className="auth-page">
@@ -98,7 +123,7 @@ function Register() {
               </p>
             </div>
 
-            <form className="auth-form">
+            <form className="auth-form" onSubmit={handleRegister}>
               <div className="form-group">
                 <label htmlFor="name">Full name</label>
 
@@ -106,10 +131,12 @@ function Register() {
                   <User size={19} />
 
                   <input
-                    id="name"
-                    type="text"
-                    placeholder="Enter your full name"
-                  />
+  id="name"
+  type="text"
+  placeholder="Enter your full name"
+  value={name}
+  onChange={(e) => setName(e.target.value)}
+/>
                 </div>
               </div>
 
@@ -120,10 +147,12 @@ function Register() {
                   <Mail size={19} />
 
                   <input
-                    id="register-email"
-                    type="email"
-                    placeholder="you@example.com"
-                  />
+  id="register-email"
+  type="email"
+  placeholder="you@example.com"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+/>
                 </div>
               </div>
 
@@ -134,10 +163,12 @@ function Register() {
                   <LockKeyhole size={19} />
 
                   <input
-                    id="register-password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Create a strong password"
-                  />
+  id="register-password"
+  type={showPassword ? "text" : "password"}
+  placeholder="Create a strong password"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+/>
 
                   <button
                     type="button"
@@ -155,7 +186,11 @@ function Register() {
               </div>
 
               <label className="remember-row">
-                <input type="checkbox" />
+               <input
+  type="checkbox"
+  checked={agreed}
+  onChange={(e) => setAgreed(e.target.checked)}
+/>
                 <span>
                   I agree to the CivicConnect terms and privacy policy.
                 </span>

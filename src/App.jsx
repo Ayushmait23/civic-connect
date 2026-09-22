@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
+import ProtectedRoute from "./components/common/ProtectedRoute";
+import AdminProtectedRoute from "./components/common/AdminProtectedRoute";
 import Landing from "./pages/Landing/Landing";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
@@ -44,15 +46,17 @@ function App() {
         {/* Admin Pages */}
       
 <Route element={<AdminLayout />}>
-  <Route path="/admin" element={<AdminDashboard />} />
-  <Route path="/admin/issues" element={<AdminIssues />} />
-  <Route path="/admin/map" element={<AdminMap />} />
-  <Route path="/admin/analytics" element={<AdminAnalytics />} />
-  <Route path="/admin/citizens" element={<Citizens />} />
-  <Route path="/admin/notifications" element={<AdminNotifications />} />
-  <Route path="/admin/settings" element={<AdminSettings />} />
-
+  <Route element={<AdminProtectedRoute />}>
+    <Route path="/admin" element={<AdminDashboard />} />
+    <Route path="/admin/issues" element={<AdminIssues />} />
+    <Route path="/admin/map" element={<AdminMap />} />
+    <Route path="/admin/analytics" element={<AdminAnalytics />} />
+    <Route path="/admin/citizens" element={<Citizens />} />
+    <Route path="/admin/notifications" element={<AdminNotifications />} />
+    <Route path="/admin/settings" element={<AdminSettings />} />
+  </Route>
 </Route>
+
       </Routes>
     </BrowserRouter>
   );
